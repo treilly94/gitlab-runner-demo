@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 
     gitlab.vm.provision "docker" do |d|
       d.run "gitlab/gitlab-ce",
-        args: "-p 80:80 -p 443:443 -p 222:222"
+        args: "-p 80:80 -p 443:443 -p 222:222 --env 'GITLAB_OMNIBUS_CONFIG=external_url \"http://10.10.10.10/\";'"
     end
 
   end
@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
     end
 
     runner.vm.provision "shell", path: "scripts/runner.sh"
-  
+
   end
-  
+
 end
